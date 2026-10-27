@@ -1,0 +1,19 @@
+{
+  "name": "ember-hackathon",
+  "private": true,
+  "description": "Live NASA FIRMS active-fire GeoJSON and map for New Mexico.",
+  "scripts": {
+    "test": "python3 -m unittest discover -s lambda/fires -p 'test_*.py'",
+    "synth": "cdk synth",
+    "diff": "cdk diff",
+    "deploy": "cdk deploy --require-approval never"
+  },
+  "devDependencies": {
+    "@types/node": "^22.19.0",
+    "aws-cdk": "^2.220.0",
+    "aws-cdk-lib": "^2.220.0",
+    "constructs": "^10.4.2",
+    "tsx": "^4.20.6",
+    "typescript": "^5.9.3"
+  }
+}

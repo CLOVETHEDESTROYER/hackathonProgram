@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta
+      name="description"
+      content="EmberGuard: live New Mexico fire hotspots, and a pin-drop home ignition check from free aerial imagery."
+    />
+    <title>EmberGuard — New Mexico fires and home ignition zones</title>
+    <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Ccircle cx='8' cy='8' r='5' fill='%23ff5a1f'/%3E%3C/svg%3E" />
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <div id="map" role="application" aria-label="Map of New Mexico fire hotspots"></div>
+    <aside id="panel">
+      <p class="kicker">Ember to Aftermath · Santa Fe</p>
+      <h1>EmberGuard</h1>
+      <p class="lede">Live New Mexico hotspots, and a pin-drop check of the first feet around a house.</p>
+      <p id="status" role="status" aria-live="polite">Loading the feed…</p>
+      <div class="filters" role="group" aria-label="Filter detections">
+        <button type="button" data-mode="all" aria-pressed="true">All</button>
+        <button type="button" data-mode="day" aria-pressed="false">Day</button>
+        <button type="button" data-mode="night" aria-pressed="false">Night</button>
+        <button type="button" data-mode="hot" aria-pressed="false">≥ 1 MW</button>
+      </div>
+      <p id="sources" class="sources"></p>
+      <ol id="hottest"></ol>
+      <section id="assess" aria-labelledby="assess-title">
+        <h2 id="assess-title">Property prep</h2>
+        <p class="hint">Click the map or enter a New Mexico point. Rings are 0–5, 5–30, and 30–100 feet, or 200 feet on a steep downhill.</p>
+        <form id="assess-form">
+          <label>Latitude <input id="lat" name="lat" inputmode="decimal" autocomplete="off" required value="35.520712" /></label>
+          <label>Longitude <input id="lon" name="lon" inputmode="decimal" autocomplete="off" required value="-105.937037" /></label>
+          <button type="submit">Assess this point</button>
+        </form>
+        <p id="assess-status" role="status" aria-live="polite"></p>
+        <p id="assess-summary"></p>
+        <ol id="recs"></ol>
+        <p id="assess-note" class="credit"></p>
+      </section>
+      <div class="legend" aria-hidden="true">
+        <span><i class="swatch nominal"></i>Nominal</span>
+        <span><i class="swatch low"></i>Low</span>
+        <span><i class="swatch high"></i>High</span>
+        <span><i class="swatch night"></i>Night ring</span>
+      </div>
+      <p class="credit">
+        Hotspots, not confirmed fires. Not for emergency response.
+        Data from <a href="https://firms.modaps.eosdis.nasa.gov/">NASA FIRMS / LANCE</a>.
+      </p>
+    </aside>
+    <noscript>
+      <p class="noscript">
+        This map needs JavaScript. The live feed is the Lambda Function URL in the
+        stack outputs, and a snapshot is at <a href="fires.geojson">fires.geojson</a>.
+      </p>
+    </noscript>
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+    <script src="config.js"></script>
+    <script src="app.js"></script>
+  </body>
+</html>

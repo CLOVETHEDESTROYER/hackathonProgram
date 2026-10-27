@@ -1,0 +1,8 @@
+{
+  "app": "npx tsx bin/ember.ts",
+  "watch": {
+    "include": ["bin/**/*.ts", "lib/**/*.ts", "lambda/**/*.py", "web/**/*"],
+    "exclude": ["cdk.out", "node_modules", "lambda/**/__pycache__/**"]
+  },
+  "context": {}
+}
