@@ -1,0 +1,3 @@
+Generated using built-in image_gen, editing fire-risk-splash.png and fire-risk-splash-home.png, with fire-risk-splash-logo.png as the logo reference.
+
+Image 1 is the edit target; image 2 is a logo reference. Add the exact F.I.R.E. house-and-flame logo from image 2 to the upper left of image 1, in a compact, legible size with generous margins. Preserve its orange flame and roof, white window, exact white 'F.I.R.E.' lettering and orange underline. Keep the target landscape and composition unchanged, and add no title or other text.
