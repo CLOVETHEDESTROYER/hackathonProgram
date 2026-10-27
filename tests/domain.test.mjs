@@ -1,0 +1,12 @@
+import {test} from 'node:test';
+import assert from 'node:assert/strict';
+import {emptyControls,scoreControls,RULES,materialAdvice} from '../lib/rules.ts';
+import {sanitizeJpeg} from '../lib/images.ts';
+test('unknown controls never earn points',()=>{const c=emptyControls();assert.equal(scoreControls(c).score,0);assert.equal(scoreControls(c).completeness,0);c.roof_debris.status='met';assert.equal(scoreControls(c).score,10);assert.equal(scoreControls(c).unknown,9);});
+test('non-applicable controls change denominator, not earned points',()=>{const c=emptyControls();c.roof_debris.status='met';c.under_deck.status='not_applicable';assert.equal(scoreControls(c).score,11);assert.equal(scoreControls(c).applicable,9);assert.equal(scoreControls(c).completeness,20);});
+test('all non-applicable is not a perfect score',()=>{const c=emptyControls();for(const r of RULES)c[r.id].status='not_applicable';assert.equal(scoreControls(c).score,null);});
+test('tasks cannot change score and needs-improvement remains unresolved',()=>{const c=emptyControls();c.firewood.status='needs_improvement';assert.equal(scoreControls(c).unresolved,1);assert.equal(scoreControls(c).score,0);const actions={firewood:true};assert.equal(scoreControls(c).score,0);});
+test('firewood reuse requires both clean and untreated confirmations',()=>{assert.match(materialAdvice('wood',true,true),/Potential personal firewood/);for(const pair of [[false,false],[true,false],[false,true]])assert.match(materialAdvice('wood',...pair),/Do not recommend for burning/);assert.doesNotMatch(materialAdvice('unknown',true,true),/Potential personal firewood/);});
+test('reject fake and truncated JPEGs',()=>{assert.throws(()=>sanitizeJpeg(new Uint8Array([0,1,2,3])));assert.throws(()=>sanitizeJpeg(new Uint8Array([255,216,255,217])));});
+test('strip EXIF and comments while retaining encoded image',()=>{const bytes=new Uint8Array([255,216,255,225,0,8,69,120,105,102,0,0,255,254,0,4,65,66,255,192,0,11,8,0,1,0,1,1,1,17,0,255,218,0,8,1,1,0,0,63,0,1,255,217]);const clean=sanitizeJpeg(bytes);assert.ok(clean.length<bytes.length);assert.ok(!Buffer.from(clean).includes(Buffer.from('Exif')));assert.equal(clean.at(-1),217);});
+test('reject images over dimension bound',()=>{assert.throws(()=>sanitizeJpeg(new Uint8Array([255,216,255,192,0,11,8,7,0,7,0,1,1,17,0,255,218,0,8,1,1,0,0,63,0,1,255,217])),/1600/);});

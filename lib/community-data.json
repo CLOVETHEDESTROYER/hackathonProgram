@@ -1,0 +1,53 @@
+{
+  "source": "https://wildfirerisk.org/wp-content/uploads/2026/04/wrc_download_20260415.xlsx",
+  "edition": "2026-04-15",
+  "records": [
+    {
+      "geography": "Communities",
+      "sourceSheet": "Communities",
+      "sourceRow": 17966,
+      "record": {
+        "GEOID": "3570500",
+        "GEOIDFQ": "1600000US3570500",
+        "STUSPS": "NM",
+        "NAME": "Santa Fe, NM",
+        "STATE_NAME": "New Mexico",
+        "STATEFP": 35,
+        "PLACEFP": 70500,
+        "PLACENS": 2411821,
+        "TOTAL_BUILDINGS": 40750,
+        "BUILDINGS_FRACTION_ME": 0.463214724,
+        "BUILDINGS_FRACTION_IE": 0.253742331,
+        "BUILDINGS_FRACTION_DE": 0.283042945,
+        "BP_STATE_RANK": 0.581,
+        "BP_NATIONAL_RANK": 0.792,
+        "RISK_STATE_RANK": 0.662,
+        "RISK_NATIONAL_RANK": 0.865,
+        "INSUFFICIENT_DATA": "No"
+      }
+    },
+    {
+      "geography": "Counties",
+      "sourceSheet": "Counties",
+      "sourceRow": 1824,
+      "record": {
+        "GEOID": "35049",
+        "GEOIDFQ": "0500000US35049",
+        "STUSPS": "NM",
+        "NAME": "Santa Fe County, NM",
+        "STATE_NAME": "New Mexico",
+        "STATEFP": 35,
+        "COUNTYFP": 49,
+        "COUNTYNS": 933322,
+        "TOTAL_BUILDINGS": 84636,
+        "BUILDINGS_FRACTION_ME": 0.226771114,
+        "BUILDINGS_FRACTION_IE": 0.171652725,
+        "BUILDINGS_FRACTION_DE": 0.601576161,
+        "BP_STATE_RANK": 0.312,
+        "BP_NATIONAL_RANK": 0.8,
+        "RISK_STATE_RANK": 0.438,
+        "RISK_NATIONAL_RANK": 0.852
+      }
+    }
+  ]
+}
